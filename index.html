@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#10b981" />
+  <meta name="description" content="بهترین ماشین حساب دنیا — مدرن، دقیق و زیبا" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Nexus" />
+  <title>Nexus Calculator — بهترین ماشین حساب</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+</head>
+<body>
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <div class="logo-icon">∑</div>
+        <span class="logo-text">Nexus</span>
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" id="historyBtn" title="تاریخچه" aria-label="تاریخچه">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>
+          </svg>
+        </button>
+        <button class="icon-btn" id="themeBtn" title="تغییر تم" aria-label="تغییر تم">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Display -->
+    <div class="display-area">
+      <div class="expression" id="expression"></div>
+      <div class="result" id="result">0</div>
+    </div>
+
+    <!-- Mode Toggle -->
+    <div class="mode-bar">
+      <button class="mode-btn active" data-mode="basic">پایه</button>
+      <button class="mode-btn" data-mode="scientific">علمی</button>
+    </div>
+
+    <!-- Keypad -->
+    <div class="keypad" id="keypad">
+      <!-- Basic Mode -->
+      <div class="keys basic-keys active" id="basicKeys">
+        <button class="key fn" data-action="clear">C</button>
+        <button class="key fn" data-action="paren">()</button>
+        <button class="key fn" data-action="percent">%</button>
+        <button class="key op" data-value="÷">÷</button>
+
+        <button class="key num" data-value="7">7</button>
+        <button class="key num" data-value="8">8</button>
+        <button class="key num" data-value="9">9</button>
+        <button class="key op" data-value="×">×</button>
+
+        <button class="key num" data-value="4">4</button>
+        <button class="key num" data-value="5">5</button>
+        <button class="key num" data-value="6">6</button>
+        <button class="key op" data-value="−">−</button>
+
+        <button class="key num" data-value="1">1</button>
+        <button class="key num" data-value="2">2</button>
+        <button class="key num" data-value="3">3</button>
+        <button class="key op" data-value="+">+</button>
+
+        <button class="key fn" data-action="sign">+/−</button>
+        <button class="key num" data-value="0">0</button>
+        <button class="key num" data-value=".">.</button>
+        <button class="key eq" data-action="equals">=</button>
+      </div>
+
+      <!-- Scientific Mode -->
+      <div class="keys sci-keys" id="sciKeys">
+        <button class="key fn small" data-action="deg">DEG</button>
+        <button class="key fn small" data-action="sqrt">√</button>
+        <button class="key fn small" data-action="cbrt">∛</button>
+        <button class="key fn" data-action="clear">C</button>
+        <button class="key fn" data-action="paren">()</button>
+        <button class="key fn" data-action="percent">%</button>
+        <button class="key op" data-value="÷">÷</button>
+
+        <button class="key fn small" data-action="sin">sin</button>
+        <button class="key fn small" data-action="cos">cos</button>
+        <button class="key fn small" data-action="tan">tan</button>
+        <button class="key num" data-value="7">7</button>
+        <button class="key num" data-value="8">8</button>
+        <button class="key num" data-value="9">9</button>
+        <button class="key op" data-value="×">×</button>
+
+        <button class="key fn small" data-action="ln">ln</button>
+        <button class="key fn small" data-action="log">log</button>
+        <button class="key fn small" data-action="inv">1/x</button>
+        <button class="key num" data-value="4">4</button>
+        <button class="key num" data-value="5">5</button>
+        <button class="key num" data-value="6">6</button>
+        <button class="key op" data-value="−">−</button>
+
+        <button class="key fn small" data-action="exp">eˣ</button>
+        <button class="key fn small" data-action="square">x²</button>
+        <button class="key fn small" data-action="pow">xʸ</button>
+        <button class="key num" data-value="1">1</button>
+        <button class="key num" data-value="2">2</button>
+        <button class="key num" data-value="3">3</button>
+        <button class="key op" data-value="+">+</button>
+
+        <button class="key fn small" data-action="abs">|x|</button>
+        <button class="key fn small" data-value="π">π</button>
+        <button class="key fn small" data-value="e">e</button>
+        <button class="key fn" data-action="sign">+/−</button>
+        <button class="key num" data-value="0">0</button>
+        <button class="key num" data-value=".">.</button>
+        <button class="key eq" data-action="equals">=</button>
+      </div>
+    </div>
+
+    <!-- History Panel -->
+    <div class="history-panel" id="historyPanel">
+      <div class="history-header">
+        <h3>تاریخچه</h3>
+        <button class="clear-history" id="clearHistory">پاک کردن</button>
+      </div>
+      <div class="history-list" id="historyList">
+        <p class="empty-history">هنوز محاسبه‌ای انجام نشده</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Register Service Worker for PWA
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(reg => console.log('Service Worker registered', reg.scope))
+          .catch(err => console.log('SW registration failed:', err));
+      });
+    }
+  </script>
+</body>
+</html>
